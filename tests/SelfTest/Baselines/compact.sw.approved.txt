@@ -1532,6 +1532,12 @@ String.tests.cpp:<line number>: passed: with 1 message: '!(sr1.empty())'
 String.tests.cpp:<line number>: passed: with 1 message: 'sr1.size() == 3'
 String.tests.cpp:<line number>: passed: with 1 message: 'sr2.empty()'
 String.tests.cpp:<line number>: passed: with 1 message: 'sr2.size() == 0'
+ToString.tests.cpp:<line number>: passed: ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+ToString.tests.cpp:<line number>: passed: ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+ToString.tests.cpp:<line number>: passed: ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+ToString.tests.cpp:<line number>: passed: ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+ToString.tests.cpp:<line number>: passed: ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+ToString.tests.cpp:<line number>: passed: ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
 ToStringChrono.tests.cpp:<line number>: passed: minute == seconds for: 1 m == 60 s
 ToStringChrono.tests.cpp:<line number>: passed: hour != seconds for: 1 h != 60 s
 ToStringChrono.tests.cpp:<line number>: passed: micro != milli for: 1 us != 1 ms
@@ -2056,6 +2062,25 @@ Condition.tests.cpp:<line number>: passed: long_var == unsigned_char_var for: 1 
 Condition.tests.cpp:<line number>: passed: long_var == unsigned_short_var for: 1 == 1
 Condition.tests.cpp:<line number>: passed: long_var == unsigned_int_var for: 1 == 1
 Condition.tests.cpp:<line number>: passed: long_var == unsigned_long_var for: 1 == 1
+ToString.tests.cpp:<line number>: passed: convertIntoString(""_sr, false) == R"("")"s for: """" == """"
+ToString.tests.cpp:<line number>: passed: convertIntoString("abcd"_sr, false) == R"("abcd")"s for: ""abcd"" == ""abcd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\ncd"_sr, false) == "\"ab\ncd\""s for: ""ab
+cd""
+==
+""ab
+cd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\r\ncd"_sr, false) == "\"ab\r\ncd\""s for: ""ab
+cd""
+==
+""ab
+cd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\"cd"_sr, false) == R"("ab"cd")"s for: ""ab"cd"" == ""ab"cd""
+ToString.tests.cpp:<line number>: passed: convertIntoString(""_sr, true) == R"("")"s for: """" == """"
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\ncd"_sr, true) == R"("ab\ncd")"s for: ""ab\ncd"" == ""ab\ncd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\r\ncd"_sr, true) == R"("ab\r\ncd")"s for: ""ab\r\ncd"" == ""ab\r\ncd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\tcd"_sr, true) == R"("ab\tcd")"s for: ""ab\tcd"" == ""ab\tcd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\fcd"_sr, true) == R"("ab\fcd")"s for: ""ab\fcd"" == ""ab\fcd""
+ToString.tests.cpp:<line number>: passed: convertIntoString("ab\"cd"_sr, true) == R"("ab"cd")"s for: ""ab"cd"" == ""ab"cd""
 InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(1.103560) == Approx(-0.09203687623843015) for: -0.0920368762 == Approx( -0.0920368762 )
 InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(1.067400) == Approx(-0.05980291115763361) for: -0.0598029112 == Approx( -0.0598029112 )
 InternalBenchmark.tests.cpp:<line number>: passed: erfc_inv(0.050000) == Approx(1.38590382434967796) for: 1.3859038243 == Approx( 1.3859038243 )

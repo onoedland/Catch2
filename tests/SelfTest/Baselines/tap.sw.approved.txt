@@ -2743,6 +2743,18 @@ ok {test-number} - with 1 message: 'sr1.size() == 3'
 ok {test-number} - with 1 message: 'sr2.empty()'
 # StringRef at compilation time
 ok {test-number} - with 1 message: 'sr2.size() == 0'
+# Stringifying char arrays with statically known sizes - char
+ok {test-number} - ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+# Stringifying char arrays with statically known sizes - char
+ok {test-number} - ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+# Stringifying char arrays with statically known sizes - signed char
+ok {test-number} - ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+# Stringifying char arrays with statically known sizes - signed char
+ok {test-number} - ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+# Stringifying char arrays with statically known sizes - unsigned char
+ok {test-number} - ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
+# Stringifying char arrays with statically known sizes - unsigned char
+ok {test-number} - ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s for: ""abc"" == ""abc""
 # Stringifying std::chrono::duration helpers
 ok {test-number} - minute == seconds for: 1 m == 60 s
 # Stringifying std::chrono::duration helpers
@@ -3689,6 +3701,30 @@ ok {test-number} - long_var == unsigned_short_var for: 1 == 1
 ok {test-number} - long_var == unsigned_int_var for: 1 == 1
 # comparisons between int variables
 ok {test-number} - long_var == unsigned_long_var for: 1 == 1
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString(""_sr, false) == R"("")"s for: """" == """"
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("abcd"_sr, false) == R"("abcd")"s for: ""abcd"" == ""abcd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\ncd"_sr, false) == "\"ab\ncd\""s for: ""ab cd"" == ""ab cd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\r\ncd"_sr, false) == "\"ab\r\ncd\""s for: ""ab
+ cd"" == ""ab
+ cd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\"cd"_sr, false) == R"("ab"cd")"s for: ""ab"cd"" == ""ab"cd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString(""_sr, true) == R"("")"s for: """" == """"
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\ncd"_sr, true) == R"("ab\ncd")"s for: ""ab\ncd"" == ""ab\ncd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\r\ncd"_sr, true) == R"("ab\r\ncd")"s for: ""ab\r\ncd"" == ""ab\r\ncd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\tcd"_sr, true) == R"("ab\tcd")"s for: ""ab\tcd"" == ""ab\tcd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\fcd"_sr, true) == R"("ab\fcd")"s for: ""ab\fcd"" == ""ab\fcd""
+# convertIntoString stringification helper
+ok {test-number} - convertIntoString("ab\"cd"_sr, true) == R"("ab"cd")"s for: ""ab"cd"" == ""ab"cd""
 # erfc_inv
 ok {test-number} - erfc_inv(1.103560) == Approx(-0.09203687623843015) for: -0.0920368762 == Approx( -0.0920368762 )
 # erfc_inv
@@ -4204,5 +4240,5 @@ ok {test-number} - q3 == 23. for: 23.0 == 23.0
 ok {test-number} -
 # xmlentitycheck
 ok {test-number} -
-1..2101
+1..2118
 

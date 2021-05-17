@@ -10866,6 +10866,54 @@ with message:
   sr2.size() == 0
 
 -------------------------------------------------------------------------------
+Stringifying char arrays with statically known sizes - char
+-------------------------------------------------------------------------------
+ToString.tests.cpp:<line number>
+...............................................................................
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s )
+with expansion:
+  ""abc"" == ""abc""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s )
+with expansion:
+  ""abc"" == ""abc""
+
+-------------------------------------------------------------------------------
+Stringifying char arrays with statically known sizes - signed char
+-------------------------------------------------------------------------------
+ToString.tests.cpp:<line number>
+...............................................................................
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s )
+with expansion:
+  ""abc"" == ""abc""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s )
+with expansion:
+  ""abc"" == ""abc""
+
+-------------------------------------------------------------------------------
+Stringifying char arrays with statically known sizes - unsigned char
+-------------------------------------------------------------------------------
+ToString.tests.cpp:<line number>
+...............................................................................
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( ::Catch::Detail::stringify( with_null_terminator ) == R"("abc")"s )
+with expansion:
+  ""abc"" == ""abc""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( ::Catch::Detail::stringify( no_null_terminator ) == R"("abc")"s )
+with expansion:
+  ""abc"" == ""abc""
+
+-------------------------------------------------------------------------------
 Stringifying std::chrono::duration helpers
 -------------------------------------------------------------------------------
 ToStringChrono.tests.cpp:<line number>
@@ -14537,6 +14585,83 @@ with expansion:
   1 == 1
 
 -------------------------------------------------------------------------------
+convertIntoString stringification helper
+  No escaping
+-------------------------------------------------------------------------------
+ToString.tests.cpp:<line number>
+...............................................................................
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString(""_sr, false) == R"("")"s )
+with expansion:
+  """" == """"
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("abcd"_sr, false) == R"("abcd")"s )
+with expansion:
+  ""abcd"" == ""abcd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\ncd"_sr, false) == "\"ab\ncd\""s )
+with expansion:
+  ""ab
+  cd""
+  ==
+  ""ab
+  cd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\r\ncd"_sr, false) == "\"ab\r\ncd\""s )
+with expansion:
+  ""ab
+  cd""
+  ==
+  ""ab
+  cd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\"cd"_sr, false) == R"("ab"cd")"s )
+with expansion:
+  ""ab"cd"" == ""ab"cd""
+
+-------------------------------------------------------------------------------
+convertIntoString stringification helper
+  Escaping invisibles
+-------------------------------------------------------------------------------
+ToString.tests.cpp:<line number>
+...............................................................................
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString(""_sr, true) == R"("")"s )
+with expansion:
+  """" == """"
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\ncd"_sr, true) == R"("ab\ncd")"s )
+with expansion:
+  ""ab\ncd"" == ""ab\ncd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\r\ncd"_sr, true) == R"("ab\r\ncd")"s )
+with expansion:
+  ""ab\r\ncd"" == ""ab\r\ncd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\tcd"_sr, true) == R"("ab\tcd")"s )
+with expansion:
+  ""ab\tcd"" == ""ab\tcd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\fcd"_sr, true) == R"("ab\fcd")"s )
+with expansion:
+  ""ab\fcd"" == ""ab\fcd""
+
+ToString.tests.cpp:<line number>: PASSED:
+  CHECK( convertIntoString("ab\"cd"_sr, true) == R"("ab"cd")"s )
+with expansion:
+  ""ab"cd"" == ""ab"cd""
+
+-------------------------------------------------------------------------------
 erfc_inv
 -------------------------------------------------------------------------------
 InternalBenchmark.tests.cpp:<line number>
@@ -16782,6 +16907,6 @@ Misc.tests.cpp:<line number>
 Misc.tests.cpp:<line number>: PASSED:
 
 ===============================================================================
-test cases:  360 |  268 passed |  86 failed |  6 failed as expected
-assertions: 2101 | 1932 passed | 146 failed | 23 failed as expected
+test cases:  364 |  272 passed |  86 failed |  6 failed as expected
+assertions: 2118 | 1949 passed | 146 failed | 23 failed as expected
 
